@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <title>Page pour Mobile</title> 
+           
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf8">
+<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css" />
+<script  type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+     
+    <script src="js/jquery.excoloSlider.js"></script>
+    <link href="css/jquery.excoloSlider.css" rel="stylesheet" />
+    
+   
+
+  
+  <script type="text/javascript">
+  
+  function afficher(){
+  
+         
+          
+		    $.getJSON("http://meteorestsrvmobile.lab3il.fr/RestServiceMeteo.svc/jsontmps",
+           function(data) {
+         
+           $('#dates').val(data.JSONDataTmpsResult.DateReleve);
+           $('#temp').val(data.JSONDataTmpsResult.Temperature+" °C");
+           $('#pression').val(data.JSONDataTmpsResult.Pression+" hPa");
+         $('#hum').val(data.JSONDataTmpsResult.Humidite+" %");
+         $('#vent').val(data.JSONDataTmpsResult.VentDirection);
+         $('#vitesse').val(data.JSONDataTmpsResult.VentVitesse+" Km/h");
+               
+            });   
+  
+  }
+  
+ 
+  
+  function affichage(){
+  
+         
+           $.getJSON("http://meteorestsrvmobile.lab3il.fr/RestServiceMeteo.svc/jsonprev",
+           function(data) {
+         
+		   $('#date').val(data.JSONDataPrevResult.DatePrevision);
+           $('#tempmax').val(data.JSONDataPrevResult.PrevTempMax+" °C");
+           $('#tempmin').val(data.JSONDataPrevResult.PrevTempMin+" °C");
+               
+            });   
+  
+  }
+  
+  
+       
+  </script>
+
+</head>
+<body onload="afficher();affichage();" ">
+    
+
+ <!-------la page principale-------->
+ <div data-role="page" id="page0" style="  background:rgb(81, 173, 226)">
+ 	<div data-role="header" data-theme='a' >
+	    <br>
+ 		<h1  >Méteo à Limoges</h1>
+ 	<br>
+ 	</div>
+	<br><br><br>
+ 	    <div data-role="content">
+ 		<ul data-role="listview">
+      
+       <li data-theme='b'><a href="#page1" >Dernières observations</a></li>
+       <br>
+       <li data-theme='b'><a href="#page2">Prév de demain</a></li>	
+ 		</ul>
+   </div>
+   <br>
+   <!-----les photos----------- -->
+   <br><br><br>
+ 	<div data-role="content"  data-theme='b'>
+ 	
+  	  <div id="sliderA" class="slider" >
+				
+        <img src="images/image0.jpg" />
+        <img src="images/image1.jpg" />
+	    <img src="images/image2.jpg" />
+	    <img src="images/image3.jpg" />
+			
+			</div>
+  
+   </div>
+   <div data-role="navbar">
+    <ul>
+      <li><a href="https://www.facebook.com/mohamed.pirlo.77" data-theme="b">Facebook</a></li>
+      <li><a href="https://www.linkedin.com/in/mohamed-el-fata-270917135/">In</a></li>
+	   <li><a href="#page3">A propos</a></li>
+    </ul>
+    </div>
+	<br><br><br>
+ 	<div data-role="footer" data-theme='c'>
+ 	   <p></p>
+ 		
+ 	</div> 
+ </div>
+ 
+ 
+ <!-------la page 01-------->
+ <div data-role="page" id="page1" style="background:rgb(81, 173, 226)">
+  <div data-role="header" data-theme='b'>
+    <a href="#page0" data-icon="back" data-transition="flip">Retour</a>
+     <h1  >Aujourd'hui</h1> 
+	 
+<input  id ="dates"  readonly style="text-align:center" data-theme='b'  />
+  </div>
+
+  
+  
+  <div date-role="content">
+<br><br><br><br>
+Temperature: 
+<input type ="text" id = "temp" data-theme='b' readonly/>
+Pression: 
+<input type ="text" id = "pression" data-theme='b' readonly/>
+Humidité: 
+<input type ="text" id = "hum"  data-theme='b' readonly/>
+
+Direction du vent: 
+<input type ="text" id = "vent" data-theme='b' readonly/>
+
+Vitesse: 
+<input type ="text" id = "vitesse" data-theme='b' readonly />
+  </div>
+<br><br><br><br><br>
+  <div data-role="footer">
+  </div>
+	</div> 
+
+
+
+
+<!-------la page 02-------->
+ <div data-role="page" id="page2" style=" background:rgb(81, 173, 226)">
+  <div data-role="header"  data-theme='b'>
+     <a href="#page0" data-icon="back" data-transition="flip">Retour</a>
+     <h1>Demain</h1> 
+<input  type ="text" id = "date" data-theme='b' readonly readonly style="text-align:center" ></iput> 	 
+  </div>
+  
+  
+ <div date-role="content">
+   <div data-role="content" >
+     
+Temperature Max: 
+<input type ="text" id = "tempmax" data-theme='b' />
+Temperature Min: 
+<input type ="text" id = "tempmin" data-theme='b' />
+   
+  </div>
+  </div>
+
+  <div data-role="footer">
+  </div>
+ 
+  </div>
+  
+
+
+  
+  
+   <!------- la page A Propos -------->
+ <div data-role="page" id="page3" style="background:rgb(81, 173, 226)" data-role="header" data-theme='b'>
+  <div data-role="header">
+    <a href="#page0" data-icon="back" data-transition="flip">Retour</a>
+	 <br>
+     <h1  >A propos</h1> 
+	 <br><br>
+  </div>
+
+<br><br>
+  <div date-role="content"  >
+      <p> &nbsp&nbsp- Ce projet est Réalisé par:</p>
+	  <ul>
+	    <li>Mohamed EL FATA</li>
+	  </ul>
+	  
+  </div>
+  </div>
+
+
+
+  <div data-role="footer">
+   
+  
+  </div>
+	</div> 
+  
+
+
+</body>
+<script>   $(function () {
+            $("#sliderA").excoloSlider();
+          
+        });</script>
+</html>
